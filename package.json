@@ -11,7 +11,7 @@
   "author": "(주)소프트스퀘어드",
   "scripts": {
     "build-dev": "BUILD_PATH='./build-dev' dotenv -e .env.development react-scripts build",
-    "build-stage": "BUILD_PATH='./build-stage' dotenv -e 을.env.stage react-scripts build",
+    "build-stage": "BUILD_PATH='./build-stage' dotenv -e .env.stage react-scripts build",
     "build-prod": "react-scripts build",
     "start": "react-scripts start",
     "prepare": "husky install"
