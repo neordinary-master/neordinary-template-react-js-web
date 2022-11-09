@@ -10,8 +10,3 @@ permissions:
     owner: root
     group: root
     mode: 755
-hooks:
-  BeforeInstall:
-    - location: scripts/beforeInstall.bash
-  AfterInstall:
-    - location: scripts/afterInstall.bash
