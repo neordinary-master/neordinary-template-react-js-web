@@ -10,3 +10,4 @@ build/*
 build-dev/*
 build-stage/*
 dist/*
+docs/*
