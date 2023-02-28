@@ -5,6 +5,10 @@ import AppFooter from '../components/AppFooter'
 import styled from 'styled-components'
 import {supportDeviceSize} from '../components/styled'
 
+/**
+ * 기본 레이아웃
+ * @category Layout
+ */
 const DefaultLayout = () => {
   /*const navigate = useNavigate()
 

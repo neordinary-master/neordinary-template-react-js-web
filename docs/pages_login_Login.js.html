@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> pages/login/Login.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#saveLoginData">saveLoginData</a></li></ul></div><div class="category"><h2>Dashboard</h2><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li></ul></div><div class="category"><h2>Home</h2><h3>Global</h3><ul><li><a href="global.html#HomePage">HomePage</a></li></ul></div><div class="category"><h2>Layout</h2><h3>Global</h3><ul><li><a href="global.html#DefaultLayout">DefaultLayout</a></li></ul></div><div class="category"><h2>Login</h2><h3>Global</h3><ul><li><a href="global.html#LoginPage">LoginPage</a></li></ul></div><div class="category"><h2>Utility</h2><h3>Global</h3><ul><li><a href="global.html#isEmpty">isEmpty</a></li><li><a href="global.html#isValidEmail">isValidEmail</a></li><li><a href="global.html#isValidPhoneNumber">isValidPhoneNumber</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>pages/login/Login.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {loginAction} from '../../store/actions/login'
+import {useDispatch} from 'react-redux'
+import styled from 'styled-components'
+import {isEmpty} from '../../utils/utility'
+import {supportDeviceSize} from '../../components/styled'
+
+/**
+ * 로그인
+ * @category Login
+ */
+const LoginPage = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const [name, setName] = useState('')
+
+  // Input 에서 엔터키 누를 경우
+  const onKeyPress = event => {
+    if (event.key === 'Enter') {
+      handleLogin().then()
+    }
+  }
+
+  // 로그인 버튼 클릭
+  const handleLogin = async () => {
+    try {
+      if (isEmpty(name)) {
+        alert('이름을 입력해 주세요.')
+        return
+      }
+
+      //서버통신 코드 작성
+
+      //redux 넣어주기
+      dispatch(loginAction({name: name}))
+
+      navigate(`/`)
+    } catch (error) {
+      alert('네트워크 통신 실패. 잠시후 다시 시도해주세요.')
+    }
+  }
+
+  return (
+    &lt;LoginRoot>
+      &lt;Wrap>
+        &lt;div style={{fontSize: '2.5rem', fontWeight: '600', marginBottom: '4rem'}}>로그인&lt;/div>
+        &lt;div style={{fontSize: '1.8rem', fontWeight: '600', marginBottom: '1rem'}}>이름&lt;/div>
+        &lt;InputWrap
+          value={name}
+          onChange={e => setName(e.target.value)}
+          placeholder='이름을 입력해주세요.'
+          onKeyPress={onKeyPress}
+        />
+        &lt;LoginButton onClick={handleLogin}>로그인&lt;/LoginButton>
+      &lt;/Wrap>
+    &lt;/LoginRoot>
+  )
+}
+
+const LoginRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 1080px;
+  height: 100vh;
+  background-color: green;
+
+  @media all and (max-width: ${supportDeviceSize}px) {
+    width: 100vw;
+  }
+`
+
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  width: 45rem;
+  height: 30rem;
+  padding: 3rem;
+  border: 0.5rem solid yellow;
+  background-color: red;
+`
+
+const InputWrap = styled.input`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 4rem;
+  padding-left: 1rem;
+  margin-bottom: 6rem;
+`
+
+const LoginButton = styled.div`
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  background-color: rgb(59, 105, 246);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+`
+
+export default LoginPage
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

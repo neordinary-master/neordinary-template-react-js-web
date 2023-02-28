@@ -1,6 +1,10 @@
 import React, {useState} from 'react'
 import {getLoginInfoUserName} from '../../dataManager/localStorageManager'
 
+/**
+ * 대시보드
+ * @category Dashboard
+ */
 const Dashboard = () => {
   const [loginInfoUserName] = useState(getLoginInfoUserName)
 

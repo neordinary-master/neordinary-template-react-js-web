@@ -2,6 +2,10 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 import styled from 'styled-components'
 
+/**
+ * 홈
+ * @category Home
+ */
 const HomePage = () => {
   // Redux 값 불러오기
   const {user} = useSelector(state => state.LoginReducer)

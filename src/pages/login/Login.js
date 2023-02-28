@@ -6,6 +6,10 @@ import styled from 'styled-components'
 import {isEmpty} from '../../utils/utility'
 import {supportDeviceSize} from '../../components/styled'
 
+/**
+ * 로그인
+ * @category Login
+ */
 const LoginPage = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
