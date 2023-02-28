@@ -25,7 +25,7 @@ jobs:
         run: CI=false npm run build-prod
 
       - name: zip create # 효율적인 공간 활용을 위해 필요한 파일만 압축
-        run: zip -qq -r ./build-gt-${{ secrets.NICKNAME }}-${{ secrets.GRIDGE_TEST_ID }}.zip ./build ./appspec.yml 
+        run: zip -qq -r ./build-gt-${{ secrets.NICKNAME }}-${{ secrets.GRIDGE_TEST_ID }}.zip ./build ./docs ./appspec.yml
         shell: bash
 
       - name: Configure AWS credentials
